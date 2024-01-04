@@ -1,0 +1,21 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+const EXPERIENCE = [
+  {
+    title: "Senior Product Designer",
+    date: "Feb 2020",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate. Donec quis nibh sit amet risus feugiat scelerisque. Maecenas vitae risus vitae massa blandit euismod. Fusce nec diam et dolor ornare rhoncus nec ut mauris. Sed euismod, diam quis aliquet fermentum, nibh velit dapibus odio, vitae ultricies quam velit vitae massa.",
+  },
+];
+---
+
+<ol class='relative border-s border-gray-200 dark:border-gray-700'>
+  {
+    EXPERIENCE.map((experience) => (
+      <li class='mb-10 ms-4'>
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>

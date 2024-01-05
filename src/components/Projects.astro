@@ -1,0 +1,64 @@
+---
+const PROJECTS = [
+  {
+    title: "webKong - Web Design Agency",
+    description:
+      "A web design agency website built with React, Zustand, Tailwind, Node, Express, and MongoDB.",
+    image: "../../public/projects/webKONG.webp",
+    link: "https://c15-20-ft-node-react.vercel.app/",
+    github: "https://github.com/No-Country/c15-20-ft-node-react",
+    tags: ["React", "Tailwind", "JavaScript", "Zustand", "React-Router"],
+  },
+  {
+    title: "MUBI Clone",
+    description: "A MUBI clone built with JavaScript, Tailwind, CSS and HTML.",
+    image: "../../public/projects/MUBI.webp",
+    link: "https://dibaxu.github.io/PROYECTO_FINAL_JS/",
+    github: "https://github.com/dibaxu/PROYECTO_FINAL_JS",
+    tags: ["JavaScript", "Tailwind", "CSS", "HTML"],
+  },
+  {
+    title: "Insurance Quote",
+    description:
+      "A web app that calculates the price of an insurance quote based on the user's selections. Built with React, Tailwind, React Router, and CSS.",
+    image: "../../public/projects/COTIZADOR.webp",
+    link: "https://cotizador-de-poliza-de-seguros.vercel.app/",
+    github: "https://github.com/dibaxu/PROYECTO3-PedroA.-SotaTaier",
+    tags: ["React", "Tailwind", "CSS", "React Router", "Vite"],
+  },
+  {
+    title: "A school website",
+    description: "A webste for a school built with HTML and CSS.",
+    image: "../../public/projects/UNTREF.webp",
+    link: "https://dibaxu.github.io/proyecto_final/",
+    github: "https://github.com/dibaxu/proyecto_final",
+    tags: ["HTML", "CSS"],
+  },
+];
+---
+
+<div class='flex flex-wrap gap-6'>
+  {
+    PROJECTS.map(({ title, description, image, link, github, tags }) => (
+      <article class=' w-1/2'>
+        <h3 class='text-2xl font-semibold'>{title}</h3>
+        <p class='text-pretty'>{description}</p>
+        <ul class='flex flex-wrap gap-4 opacity-80 text-sm'>
+          {tags.map((tag) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+        <a href={link} target='_blank' rel='noopener noreferrer'>
+          <img
+            src={image}
+            alt={title}
+            class=' rounded-md aspect-auto max-w-72'
+          />
+        </a>
+        <p>
+          <a href={github}>Repositorio de GitHub</a>
+        </p>
+      </article>
+    ))
+  }
+</div>

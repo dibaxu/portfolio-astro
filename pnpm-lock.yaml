@@ -17,9 +17,21 @@ dependencies:
   '@fontsource-variable/onest':
     specifier: ^5.0.2
     version: 5.0.2
+  '@types/react':
+    specifier: ^18.2.47
+    version: 18.2.47
+  '@types/react-dom':
+    specifier: ^18.2.18
+    version: 18.2.18
   astro:
     specifier: ^4.0.8
     version: 4.0.8(typescript@5.3.3)
+  react:
+    specifier: ^18.2.0
+    version: 18.2.0
+  react-dom:
+    specifier: ^18.2.0
+    version: 18.2.0(react@18.2.0)
   sharp:
     specifier: ^0.33.1
     version: 0.33.1

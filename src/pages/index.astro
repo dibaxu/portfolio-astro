@@ -57,27 +57,27 @@ import Projects from "../components/Projects.astro";
           psptaier@gmail.com
         </SocialPill>
       </nav>
-    </SectionContainer>
-    <SectionContainer>
-      <h2 class='text-2xl font-semibold flex gap-x-2 items-center pb-4'>
-        <Briefcase class='size-7' />
-        Work Path
-      </h2>
-      <ExperienceTimeline />
-    </SectionContainer>
-    <SectionContainer id='projects'>
-      <h2 class='text-2xl font-semibold flex gap-x-2 items-center pb-4'>
-        <CodeIcon class='size-7' />
-        Projects
-      </h2>
-      <Projects />
-    </SectionContainer>
-    <SectionContainer id='contact'>
-      <h2 class='text-2xl font-semibold flex gap-x-2 items-center pb-4'>
-        <MailIcon class='size-7' />
-        Let's talk
-      </h2>
-      <ContactForm />
+      <SectionContainer class='mt-16'>
+        <h2 class='text-2xl font-semibold flex gap-x-2 items-center pb-2'>
+          <Briefcase class='size-7' />
+          Work Path
+        </h2>
+        <ExperienceTimeline />
+      </SectionContainer>
+      <SectionContainer id='projects'>
+        <h2 class='text-2xl font-semibold flex gap-x-2 items-center pb-2'>
+          <CodeIcon class='size-7' />
+          Projects
+        </h2>
+        <Projects />
+      </SectionContainer>
+      <SectionContainer id='contact'>
+        <h2 class='text-2xl font-semibold flex gap-x-2 items-center pb-2'>
+          <MailIcon class='size-7' />
+          Let's talk
+        </h2>
+        <ContactForm />
+      </SectionContainer>
     </SectionContainer>
   </main>
 </Layout>

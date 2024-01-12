@@ -1,21 +1,10 @@
 ---
-if (Astro.request.method === "POST") {
-  try {
-    const data = await Astro.request.formData();
-    const email = data.get("email");
-    const subject = data.get("subject");
-    const message = data.get("password");
-    // Do something with the data
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
-  }
-}
+import ContactFormReact from "../components/ContactFormReact.tsx";
 ---
 
 <section class='py-8 px-4 mx-auto max-w-screen-md'>
-  <form action='mailto:psptaier@gmail.com' class='space-y-8' method='post'>
+  <ContactFormReact client:load />
+  <!-- <form action='#' class='space-y-8' method='post'>
     <div>
       <label
         for='email'
@@ -64,5 +53,5 @@ if (Astro.request.method === "POST") {
       class='py-3 px-5 text-sm font-medium text-center rounded-lg bg-primary/80 sm:w-fit hover:bg-primary focus:ring-4 focus:outline-none focus:ring-secondary dark:bg-primary/80 dark:hover:bg-primary0 dark:focus:ring-secondary'
       >Send message</button
     >
-  </form>
+  </form> -->
 </section>

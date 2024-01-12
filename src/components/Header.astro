@@ -1,16 +1,14 @@
+---
+import ThemeToggle from "./ThemeToggle";
+---
+
 <header
   class='flex justify-center items-center py-3 w-full xl:w-[1120px] mx-auto'
 >
-  <nav class='flex flex-row gap-x-10 opacity-90'>
-    <a href='#top' class='relative hover:bg-amber-200 bg-clip-padding'
-      >Home
-      <div
-        class='rounded-full bg-amber-400 size-6 absolute -z-10 bottom-0 left-2 hidden hover:block transition-all'
-      >
-      </div>
-    </a>
+  <nav class='flex flex-row gap-x-10 opacity-90 dark:text-zinc-200'>
     <a href='#about'>About</a>
     <a href='#projects'>Projects</a>
     <a href='#contact'>Contact</a>
+    <ThemeToggle client:load />
   </nav>
 </header>

@@ -17,6 +17,9 @@ dependencies:
   '@fontsource-variable/onest':
     specifier: ^5.0.2
     version: 5.0.2
+  '@fontsource/modak':
+    specifier: ^5.0.8
+    version: 5.0.8
   '@formspree/react':
     specifier: ^2.5.1
     version: 2.5.1(react-dom@18.2.0)(react@18.2.0)
@@ -677,6 +680,10 @@ packages:
 
   /@fontsource-variable/onest@5.0.2:
     resolution: {integrity: sha512-XsH6q+/OyO0Oba4OB/NkiQu3ON93U2Kx+1YxKpNZMuS+a+WvxipwhO8Und2CC0mLI33xOZzTWUk4wtnsUJzjCQ==}
+    dev: false
+
+  /@fontsource/modak@5.0.8:
+    resolution: {integrity: sha512-haBzqicohbHg7I9qo82INGQbKvgw3ndN+Hfb21F8V359bTEpgBdHZgq0K1UBX8sWNO/M3FrXaNLvRCpy8MOllw==}
     dev: false
 
   /@formspree/core@3.0.1:

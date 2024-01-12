@@ -4,6 +4,7 @@ import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import indexIcon from "../assets/code-dots.svg";
 import "@fontsource-variable/onest";
+import "@fontsource/modak";
 interface Props {
   title: string;
   description: string;
@@ -34,7 +35,8 @@ const { title, description } = Astro.props;
     <title>{title}</title>
   </head>
   <body
-    class='bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]'
+    class='bg-zinc-100 bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]
+    dark:bg-violet-950 dark:bg-[radial-gradient(60%_120%_at_50%_50%,hsla(272.09,71.67%,47.06%,1)_0,rgba(253,164,175,1)_100%)] transition-colors'
   >
     <Header />
     <slot />
@@ -44,15 +46,6 @@ const { title, description } = Astro.props;
 
 <style is:global>
   :root {
-    /* --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    ); */
   }
   html {
     font-family: "Onest Variable", system-ui, sans-serif;
@@ -69,3 +62,21 @@ const { title, description } = Astro.props;
     }
   }
 </style>
+<script is:inline>
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
+  window.localStorage.setItem("theme", theme);
+</script>

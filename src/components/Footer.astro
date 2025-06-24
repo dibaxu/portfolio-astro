@@ -1,11 +1,14 @@
+---
+const year = new Date().getFullYear();
+---
 <footer
-  class='rounded-lg shadow m-4 bg-black/10 backdrop-blur-lg w-full xl:w-[1120px] mx-auto mb-10'
+  class='absolute bottom-0 right-0 left-0 rounded-lg shadow m-4 bg-black/10 backdrop-blur-lg w-full xl:w-[1120px] mx-auto mb-10'
 >
   <div
     class='w-full mx-auto max-w-screen-xl p-4 gap-y-4 flex flex-col md:flex-row items-center justify-evenly'
   >
     <span class='text-sm text-gray-500 sm:text-center dark:text-zinc-300'
-      >© 2024 <a
+      >© {year} <a
         href='https://www.linkedin.com/in/pedroa-sota/'
         class='hover:underline'>Pedro A. Sota Taier</a
       >.
@@ -20,19 +23,6 @@
         /></a
       >
     </span>
-    <ul
-      class='flex flex-wrap items-center text-sm font-medium text-gray-500 dark:text-zinc-300 sm:mt-0'
-    >
-      <li>
-        <a href='#about' class='hover:underline me-4 md:me-6'>About</a>
-      </li>
-
-      <li>
-        <a href='#projects' class='hover:underline me-4 md:me-6'>Projects</a>
-      </li>
-      <li>
-        <a href='#contact' class='hover:underline'>Contact</a>
-      </li>
-    </ul>
+    
   </div>
 </footer>

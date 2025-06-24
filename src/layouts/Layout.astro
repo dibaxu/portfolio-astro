@@ -1,8 +1,9 @@
 ---
 import { getImage } from "astro:assets";
 import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
+import "../styles/global.css";
 import indexIcon from "../assets/code-dots.svg";
+import AnimatedBackground from "../components/AnimatedBackground.jsx";
 import "@fontsource-variable/onest";
 import "@fontsource/modak";
 interface Props {
@@ -34,12 +35,9 @@ const { title, description } = Astro.props;
     <meta name='generator' content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body
-    class='bg-zinc-100 bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]
-    dark:bg-violet-950 dark:bg-[radial-gradient(60%_120%_at_50%_50%,hsla(272.09,71.67%,47.06%,1)_0,rgba(253,164,175,1)_100%)] transition-colors'
-  >
-    <Header />
-    <slot />
+  <body class=' min-h-screen max-h-screen'>
+    <AnimatedBackground client:load />
+    <slot />    
     <Footer />
   </body>
 </html>
@@ -51,32 +49,6 @@ const { title, description } = Astro.props;
     font-family: "Onest Variable", system-ui, sans-serif;
     scroll-behavior: smooth;
   }
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
+  
 </style>
-<script is:inline>
-  const theme = (() => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
-    }
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-    return "light";
-  })();
 
-  if (theme === "light") {
-    document.documentElement.classList.remove("dark");
-  } else {
-    document.documentElement.classList.add("dark");
-  }
-  window.localStorage.setItem("theme", theme);
-</script>

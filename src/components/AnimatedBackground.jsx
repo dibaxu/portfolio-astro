@@ -12,6 +12,10 @@ const LiquidMaterial = shaderMaterial(
     uResolution: new THREE.Vector2(1, 1),
     uRipples: new Array(10).fill().map(() => new THREE.Vector2(0, 0)),
     uRippleStrengths: new Array(10).fill(0),
+    // Nuevos uniforms para controlar el noise
+    uNoiseScale: 4.0,
+    uNoiseSpeed: 0.05,
+    uFlowStrength: 0.02,
   },
   // Vertex Shader
   `
@@ -28,6 +32,9 @@ const LiquidMaterial = shaderMaterial(
     uniform vec2 uResolution;
     uniform vec2 uRipples[10];
     uniform float uRippleStrengths[10];
+    uniform float uNoiseScale;
+    uniform float uNoiseSpeed;
+    uniform float uFlowStrength;
     varying vec2 vUv;
 
     // Función de ruido simplex
@@ -75,31 +82,32 @@ const LiquidMaterial = shaderMaterial(
       vec2 st = vUv;
       vec2 mouse = uMouse * 0.5 + 0.5;
       
-      // Movimiento líquido más orgánico
+      // Movimiento líquido más orgánico (ahora controlable)
       vec2 liquidFlow = vec2(
-        snoise(st * 2.0 + vec2(uTime * 0.1, 0.0)) * 0.02,
-        snoise(st * 2.0 + vec2(0.0, uTime * 0.08)) * 0.02
+        snoise(st * 2.0 + vec2(uTime * 0.1, 0.0)) * uFlowStrength,
+        snoise(st * 2.0 + vec2(0.0, uTime * 0.08)) * uFlowStrength
       );
       
       st += liquidFlow;
       
       // Múltiples capas de ruido para crear fluido dinámico
-      float noise1 = snoise(st * 4.0 + uTime * 0.05);
-      float noise2 = snoise(st * 8.0 + uTime * 0.08 + vec2(100.0)) * 0.5;
-      float noise3 = snoise(st * 16.0 + uTime * 0.12 + vec2(200.0)) * 0.25;
+      float noise1 = snoise(st * uNoiseScale + uTime * uNoiseSpeed);
+      float noise2 = snoise(st * (uNoiseScale * 2.0) + uTime * (uNoiseSpeed * 1.6) + vec2(100.0)) * 0.5;
+      float noise3 = snoise(st * (uNoiseScale * 4.0) + uTime * (uNoiseSpeed * 2.4) + vec2(200.0)) * 0.25; 
       
       float combinedNoise = (noise1 + noise2 + noise3) * 0.5 + 0.5;
       
-      // Efecto de ondas por clicks
+      // Efecto de ondas por clicks (mejorado)
       float rippleEffect = 0.0;
       for(int i = 0; i < 10; i++) {
         vec2 ripplePos = uRipples[i];
         float strength = uRippleStrengths[i];
-        if(strength > 0.0) {
+        if(strength > 0.01) {
           float dist = length(st - ripplePos);
-          float wave = sin(dist * 30.0 - uTime * 8.0) * 0.5 + 0.5;
-          float falloff = 1.0 - smoothstep(0.0, 0.3, dist);
-          rippleEffect += wave * falloff * strength;
+          // Onda más visible y de mayor duración
+          float wave = sin(dist * 20.0 - uTime * 6.0) * 0.5 + 0.5;
+          float falloff = 1.0 - smoothstep(0.0, 0.5, dist);
+          rippleEffect += wave * falloff * strength * 0.8;
         }
       }
       
@@ -109,14 +117,14 @@ const LiquidMaterial = shaderMaterial(
       mouseInfluence *= 0.15;
       
       // Combinación final con ondas
-      float finalNoise = combinedNoise + mouseInfluence + rippleEffect * 0.3;
+      float finalNoise = combinedNoise + mouseInfluence + rippleEffect * 0.6;
       
       // Gradientes de colores vibrantes
-      vec3 purple = vec3(0.4, 0.2, 0.8);     // Púrpura profundo
-      vec3 blue = vec3(0.2, 0.6, 1.0);       // Azul cyan
+      vec3 purple = vec3(0.267,0.267,0.267);     // Púrpura profundo
+      vec3 blue = vec3(0.533,0.533,0.533);       // Azul cyan
       vec3 pink = vec3(1.0, 0.3, 0.6);       // Rosa vibrante  
-      vec3 yellow = vec3(1.0, 0.8, 0.2);     // Amarillo cálido
-      vec3 teal = vec3(0.2, 0.8, 0.8);       // Verde azulado
+      vec3 yellow = vec3(1.,0.988,0.984);     // Amarillo cálido
+      vec3 teal = vec3(0.733,0.733,0.733);       // Verde azulado
 
       // Mezcla de colores basada en posición y ruido
       vec3 colorA = mix(purple, blue, smoothstep(0.0, 1.0, st.x + combinedNoise * 0.3));
@@ -127,8 +135,8 @@ const LiquidMaterial = shaderMaterial(
       vec3 finalColor = mix(colorA, colorB, smoothstep(0.3, 0.7, finalNoise));
       finalColor = mix(finalColor, colorC, smoothstep(0.4, 0.9, combinedNoise + rippleEffect));
       
-      // Efecto de ondas que afecta el color
-      finalColor += vec3(rippleEffect * 0.4);
+      // Efecto de ondas que afecta el color más visiblemente
+      finalColor += vec3(rippleEffect * 0.8);
       
       gl_FragColor = vec4(finalColor, 1.0);
     }
@@ -199,7 +207,7 @@ function LiquidPlane() {
     // Convertir coordenadas del click a UV (0-1)
     const x = (pointer.x + 1) / 2;
     const y = (pointer.y + 1) / 2;
-
+    console.log("Click en:", x, y);
     // Agregar nueva onda
     ripples[rippleIndex].set(x, y);
     rippleStrengths[rippleIndex] = 1.0;
@@ -230,7 +238,7 @@ function LiquidPlane() {
 // Componente principal
 const AnimatedBackground = () => {
   return (
-    <div className='fixed inset-0 -z-10'>
+    <div className='fixed inset-0 pointer-events-none'>
       <Canvas
         camera={{ position: [0, 0, 1], fov: 75 }}
         gl={{
@@ -238,6 +246,7 @@ const AnimatedBackground = () => {
           alpha: true,
           powerPreference: "high-performance",
         }}
+        className='pointer-events-auto'
       >
         <Bvh>
           <AdaptiveDpr pixelated />

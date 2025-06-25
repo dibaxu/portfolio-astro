@@ -1,12 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ContactForm from "../components/ContactForm.astro";
-import Badge from "../components/Badge.astro";
 import Linkedin from "../icons/Linkedin.astro";
 import SocialPill from "../components/SocialPill.astro";
 import Github from "../icons/Github.astro";
 import MailIcon from "../icons/MailIcon.astro";
-import Subtitle from "../components/Subtitle.tsx";
 ---
 
 <Layout
@@ -28,11 +25,11 @@ import Subtitle from "../components/Subtitle.tsx";
             >hi, I'm Pedro</span
           >        
         </h1>
-        <h2 class='text-xl lg:text-2xl text-pretty max-w-[650px]'>
+        <h2 class='text-xl lg:text-2xl text-pretty max-w-[650px] z-10'>
           I'm a Web Developer based
           in <span class='text-cyan-800 text-shadow-pink-200 text-shadow-2xs'>Córdoba, Argentina 🇦🇷</span>. I specialize in fluent and dynamics pages. I like to play and test new frameworks and libraries.
         </h2>        
-        <nav class='flex flex-wrap gap-4 mt-8'>
+        <nav class='flex flex-wrap gap-4 mt-8 z-10'>
           <SocialPill href='https://www.linkedin.com/in/pedroa-sota/'>
             <Linkedin class='size-4 md:size-6' />
             LinkedIn

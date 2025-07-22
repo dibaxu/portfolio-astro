@@ -32,20 +32,17 @@ const { title, description } = Astro.props;
     <link rel='icon' type='image/svg+xml' href={favIcon.src} />
     <link rel='apple-touch-icon' href={favIconApple.src} />
     <meta name='generator' content={Astro.generator} />
-    <title>{title}</title>
+    <title>{title}</title>    
   </head>
-  <body class=' min-h-screen max-h-screen'>
+  <body class=` font-geist min-h-screen max-h-screen`>
     <AnimatedBackground client:load />
     <slot />  
     <Footer />
   </body>
 </html>
 
-<style is:global>
-  :root {
-  }
-  html {
-    font-family: "Geist Sans", system-ui, sans-serif;
+<style is:global>  
+  html {    
     scroll-behavior: smooth;
   }
   

@@ -4,8 +4,9 @@ import Linkedin from "../icons/Linkedin.astro";
 import SocialPill from "../components/SocialPill.astro";
 import Github from "../icons/Github.astro";
 import MailIcon from "../icons/MailIcon.astro";
-import {Image} from "astro:assets"
-import shigeo from "../assets/Shigeo.jpg"
+import CodeIcon from "../icons/CodeIcon.astro";
+import { Image } from "astro:assets";
+import shigeo from "../assets/Shigeo.jpg";
 ---
 
 <Layout
@@ -13,41 +14,55 @@ import shigeo from "../assets/Shigeo.jpg"
   description='Just testing funny tools '
 >
   <main class='container mx-auto px-4 z-10'>
-    <div class='flex flex-col items-center justify-center text-center pt-16 pb-8'>
+    <div
+      class='flex flex-col items-center justify-center text-center pt-16 pb-8'
+    >
       <a href='https://github.com/dibaxu'>
-        <Image src={shigeo} width={96} height={96} alt='Shigeo' class={"rounded-full size-24 object-cover mb-4 grayscale hover:grayscale-40 transition-all duration-300"} />
+        <Image
+          src={shigeo}
+          width={96}
+          height={96}
+          alt='Shigeo'
+          class={"rounded-full size-24 object-cover mb-4 grayscale hover:grayscale-40 transition-all duration-300"}
+        />
         <!-- <img
           src='https://avatars.githubusercontent.com/u/123599427?v=4'
           alt='Pedro´s photo'
           class='rounded-full size-24 object-cover mb-4 grayscale hover:grayscale-40 transition-all duration-300'
         /> -->
       </a>
-        <h1
-          class='text-2xl md:text-4xl lg:text-5xl flex flex-row md:gap-x-4 pb-4 '
+      <h1
+        class='text-2xl md:text-4xl lg:text-5xl flex flex-row md:gap-x-4 pb-4'
+      >
+        <span class='font-secondary text-pretty opacity-80 text-5xl'
+          >hi, I'm Pedro</span
         >
-          <span class='font-secondary text-pretty opacity-80 text-5xl'
-            >hi, I'm Pedro</span
-          >        
-        </h1>
-        <h2 class='text-xl lg:text-2xl text-pretty max-w-[650px] z-10'>
-          I'm a Web Developer based
-          in <span class='text-cyan-800 text-shadow-pink-200 text-shadow-2xs'>Córdoba, Argentina 🇦🇷</span>. I specialize in fluent and dynamics pages. I like to play and test new frameworks and libraries.
-        </h2>        
-        <nav class='flex flex-wrap gap-4 mt-8 z-10'>
-          <SocialPill href='https://www.linkedin.com/in/pedroa-sota/'>
-            <Linkedin class='size-4 md:size-6' />
-            LinkedIn
-          </SocialPill>
-          <SocialPill href='https://github.com/dibaxu'>
-            <Github class='size-4 md:size-6' />
-            GitHub
-          </SocialPill>
-          <SocialPill href='mailto: psptaier@gmail.com'>
-            <MailIcon class='size-4 md:size-6' />
-            psptaier@gmail.com
-          </SocialPill>
-        </nav>
-    </div>     
-    
+      </h1>
+      <h2 class='text-xl lg:text-2xl text-pretty max-w-[650px] z-10'>
+        I'm a Web Developer based in <span
+          class='text-cyan-800 text-shadow-pink-200 text-shadow-2xs'
+          >Córdoba, Argentina 🇦🇷</span
+        >. I specialize in fluent and dynamics pages. I like to play and test
+        new frameworks and libraries.
+      </h2>
+      <nav class='flex flex-wrap gap-4 mt-8 z-10'>
+        <SocialPill href='https://www.linkedin.com/in/pedroa-sota/'>
+          <Linkedin class='size-4 md:size-6' />
+          LinkedIn
+        </SocialPill>
+        <SocialPill href='https://github.com/dibaxu'>
+          <Github class='size-4 md:size-6' />
+          GitHub
+        </SocialPill>
+        <SocialPill href='mailto: psptaier@gmail.com'>
+          <MailIcon class='size-4 md:size-6' />
+          psptaier@gmail.com
+        </SocialPill>
+        <SocialPill href='/works' target='_self'>
+          <CodeIcon class='size-4 md:size-6' />
+          works
+        </SocialPill>
+      </nav>
+    </div>
   </main>
 </Layout>

@@ -1,0 +1,83 @@
+---
+import MinimalLayout from "../layouts/MinimalLayout.astro";
+
+const freelanceWorks = [
+  {
+    title: "Esteras Perrote",
+    description: "architectural firm based in córdoba, argentina.",
+    link: "https://esterasperrote.com/",
+  },
+  {
+    title: "WIP",
+    description: "space to share ideas on the art and architectural scene.",
+    link: "https://www.wip.ar/",
+  },
+  {
+    title: "Diego Sabattini",
+    description: "web portfolio for architect.",
+    link: "https://sbttn.ar/",
+  },
+];
+---
+
+<MinimalLayout title='Works - Pedro A. Sota' description='chambeando'>
+  <main class='container mx-auto text-white'>
+    <div
+      class='flex flex-col items-center justify-center text-center pt-16 pb-8'
+    >
+      <h1
+        class='md:text-4xl lg:text-5xl font-secondary text-pretty opacity-80 text-5xl'
+      >
+        works.
+      </h1>
+      <p class='text-base lg:text-lg text-pretty z-10 mt-4'>
+        I'm focused on writing clean, maintainable code that strikes the right
+        balance, neither overly abstract nor chaotic. I believe in choosing the
+        appropriate architecture to bring ideas to life.
+      </p>
+      <p class='text-base lg:text-lg text-pretty z-10 mt-4'>
+        At Maxx Tooling, I've developed multiple frontend features to enhance
+        the customer journey through our Shopify stores, implemented analytics
+        to better understand client behavior, and optimized code to reduce
+        client-side script load. I've also built internal Shopify Apps that
+        streamline our team's workflow.
+      </p>
+      <p class='text-base lg:text-lg text-pretty z-10 mt-4'>
+        Beyond my professional work, I continuously expand my skills through
+        freelance projects and my studies at Universidad Tecnológica Nacional,
+        staying current with industry trends and best practices.
+      </p>
+      <p class='text-base lg:text-lg text-pretty z-10 mt-4'>
+        Technical expertise includes: React, Next.js, Remix, Astro, PHP, React
+        Router, Tailwind CSS, Prisma, Supabase, NestJS, Zustand, Liquid,
+        TypeScript, and other modern web technologies.
+      </p>
+      <p class='text-base lg:text-lg text-pretty z-10 mt-4'>
+        Always open to discussing new opportunities and connecting with fellow
+        developers.
+      </p>
+
+      <div>
+        <h2 class='text-2xl mt-8 mb-4'>freelance projects.</h2>
+        <div class='flex flex-col gap-8'>
+          <ul>
+            {
+              freelanceWorks.map((work) => (
+                <li class=' list-disc mb-2'>
+                  <a
+                    href={work.link}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    class='transition'
+                  >
+                    <h3 class='text-lg text-left'>{work.title}</h3>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</MinimalLayout>

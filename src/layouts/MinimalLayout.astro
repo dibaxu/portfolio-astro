@@ -1,0 +1,46 @@
+---
+import { getImage } from "astro:assets";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+import indexIcon from "../assets/code-dots.svg";
+import { GeistSans } from "geist/font/sans";
+interface Props {
+  title: string;
+  description: string;
+}
+const favIcon = await getImage({
+  src: indexIcon,
+  width: 32,
+  height: 32,
+});
+const favIconApple = await getImage({
+  src: indexIcon,
+  width: 180,
+  height: 180,
+  format: "png",
+});
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='description' content={description} />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href={favIcon.src} />
+    <link rel='apple-touch-icon' href={favIconApple.src} />
+    <meta name='generator' content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class=` font-geist min-h-screen max-h-screen bg-zinc-800`>
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
